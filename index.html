@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <h1>Expense &amp; Budget Visualizer</h1>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <span id="themeIcon">&#127769;</span>
+      </button>
+    </header>
+
+    <main class="app-main">
+
+      <!-- Total Balance -->
+      <section class="card balance-card">
+        <p class="balance-label">Total Balance</p>
+        <p id="totalBalance" class="balance-value">$0.00</p>
+        <p id="limitWarning" class="form-error" hidden>You've gone over your monthly spending limit.</p>
+        <button id="setLimitBtn" type="button" class="link-btn">Set monthly limit</button>
+      </section>
+
+      <!-- Add Transaction Form -->
+      <section class="card">
+        <h2>Add Transaction</h2>
+        <form id="transactionForm" novalidate>
+          <div class="field">
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" name="itemName" placeholder="e.g. Coffee" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" placeholder="0.00" step="0.01" min="0" />
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Fun">Fun</option>
+              <option value="__add_new__">+ Add custom category...</option>
+            </select>
+          </div>
+          <p id="formError" class="form-error" hidden>Please fill in all fields before adding a transaction.</p>
+          <button type="submit" class="btn-primary">Add Transaction</button>
+        </form>
+      </section>
+
+      <!-- Transactions + Chart -->
+      <section class="grid-two">
+
+        <div class="card">
+          <div class="card-header-row">
+            <h2>Transactions</h2>
+            <select id="sortSelect" class="sort-select" aria-label="Sort transactions">
+              <option value="date-desc">Newest first</option>
+              <option value="date-asc">Oldest first</option>
+              <option value="amount-desc">Amount: high to low</option>
+              <option value="amount-asc">Amount: low to high</option>
+              <option value="category">Category</option>
+            </select>
+          </div>
+          <ul id="transactionList" class="transaction-list">
+            <li class="empty-state" id="emptyState">No transactions yet. Add one above to get started.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Spending by Category</h2>
+          <div class="chart-wrap">
+            <canvas id="spendingChart"></canvas>
+          </div>
+          <p id="chartEmptyState" class="empty-state">Add a transaction to see your breakdown.</p>
+        </div>
+
+      </section>
+
+      <!-- Monthly Summary -->
+      <section class="card">
+        <h2>Monthly Summary</h2>
+        <div id="monthlySummary" class="monthly-summary">
+          <p class="empty-state">No data for this month yet.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Data is stored locally in your browser. Nothing leaves your device.</p>
+    </footer>
+
+  </div>
+
+  <script src="js/chart.umd.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

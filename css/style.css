@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f4f5f3;
+  --card-bg: #ffffff;
+  --card-border: #e7e8e4;
+  --text-primary: #1d2126;
+  --text-muted: #767c85;
+  --accent: #2f6fed;
+  --accent-hover: #2559c4;
+  --accent-soft: #e8f0ff;
+  --danger: #e1483c;
+  --danger-hover: #c73a2f;
+  --tag-bg: #f0f1ee;
+  --tag-text: #52565c;
+  --shadow: 0 1px 2px rgba(20, 22, 25, 0.04), 0 8px 24px rgba(20, 22, 25, 0.04);
+
+  --chart-1: #37b978;
+  --chart-2: #f2994a;
+  --chart-3: #4f8ef7;
+  --chart-4: #b070e8;
+  --chart-5: #f2c94c;
+  --chart-6: #ea6a9a;
+}
+
+:root[data-theme="dark"] {
+  --bg: #14161a;
+  --card-bg: #1d2026;
+  --card-border: #2a2e35;
+  --text-primary: #eef0f2;
+  --text-muted: #93989f;
+  --accent: #5b8def;
+  --accent-hover: #7ba1f2;
+  --accent-soft: #202a3d;
+  --danger: #ef5b4f;
+  --danger-hover: #f27a70;
+  --tag-bg: #262a31;
+  --tag-text: #b8bcc2;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.app {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+h1, h2 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px 8px 28px;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-header-row h2 {
+  margin-bottom: 0;
+}
+
+/* ---------- Balance ---------- */
+.balance-card {
+  text-align: center;
+  padding: 26px 22px;
+}
+
+.balance-label {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.balance-value {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.balance-value.negative {
+  color: var(--danger);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 4px;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Form ---------- */
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.field input,
+.field select,
+.sort-select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.field input:focus,
+.field select:focus,
+.sort-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin: -6px 0 14px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+/* ---------- Two column grid ---------- */
+.grid-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.grid-two .card {
+  margin-bottom: 0;
+}
+
+@media (max-width: 680px) {
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Sort select ---------- */
+.sort-select {
+  width: auto;
+  padding: 7px 10px;
+  font-size: 0.8rem;
+}
+
+/* ---------- Transaction list ---------- */
+.transaction-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-info {
+  min-width: 0;
+}
+
+.transaction-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transaction-amount {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+}
+
+.transaction-amount.over-limit {
+  color: var(--danger);
+}
+
+.transaction-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+}
+
+.limit-flag {
+  margin-left: 6px;
+}
+
+.btn-delete {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 7px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-delete:hover {
+  background: var(--danger-hover);
+}
+
+.empty-state {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 20px 4px;
+}
+
+/* ---------- Chart ---------- */
+.chart-wrap {
+  position: relative;
+  height: 260px;
+  width: 100%;
+}
+
+.chart-wrap canvas {
+  display: block !important;
+}
+
+.chart-empty {
+  display: none;
+}
+
+/* ---------- Monthly summary ---------- */
+.monthly-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.summary-pill {
+  flex: 1 1 140px;
+  background: var(--tag-bg);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.summary-pill .label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.summary-pill .value {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* ---------- Footer ---------- */
+.app-footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 8px;
+}
+
+/* ---------- Limit settings inline in form ---------- */
+.limit-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: -4px;
+  margin-bottom: 16px;
+}
+
+.limit-field input {
+  width: 120px;
+  padding: 8px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-family: inherit;
+}
